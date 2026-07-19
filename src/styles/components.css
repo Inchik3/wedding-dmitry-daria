@@ -5,7 +5,8 @@
   display: grid;
   place-items: center;
   padding: 24px;
-  background: linear-gradient(135deg, #fffaf4, #f4eadc);
+  background: rgba(255, 249, 234, 0.34);
+  backdrop-filter: blur(1px);
 }
 
 .envelope-card {
@@ -90,6 +91,11 @@
   cursor: pointer;
 }
 
+#main-content {
+  position: relative;
+  z-index: 1;
+}
+
 .music-toggle:hover {
   border-color: var(--color-caramel);
   color: #241d18;
@@ -119,43 +125,9 @@
   place-items: center;
   overflow: hidden;
   padding: 96px var(--container-pad) 72px;
-  background:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.62), rgba(255, 248, 239, 0.52)),
-    radial-gradient(ellipse at 15% 18%, rgba(239, 201, 201, 0.28), transparent 32%),
-    radial-gradient(ellipse at 85% 72%, rgba(242, 221, 198, 0.42), transparent 36%),
-    var(--color-silk);
+  background: rgba(255, 249, 234, 0.1);
   color: var(--color-ink);
   text-align: center;
-}
-
-.hero::before,
-.hero::after {
-  position: absolute;
-  inset: -18% -10%;
-  pointer-events: none;
-  content: "";
-}
-
-.hero::before {
-  background:
-    linear-gradient(100deg, transparent 0 22%, rgba(255, 255, 255, 0.42) 34%, transparent 47%),
-    linear-gradient(78deg, transparent 0 46%, rgba(200, 164, 126, 0.12) 58%, transparent 70%);
-  filter: blur(18px);
-  transform: rotate(-4deg);
-  animation: silk-shift 16s ease-in-out infinite alternate;
-}
-
-.hero::after {
-  background: radial-gradient(ellipse at 50% 50%, transparent 0 42%, rgba(255, 250, 244, 0.62) 72%);
-}
-
-@keyframes silk-shift {
-  from {
-    transform: translate3d(-1%, -1%, 0) rotate(-4deg);
-  }
-  to {
-    transform: translate3d(1%, 1%, 0) rotate(-1deg);
-  }
 }
 
 .top-nav {
@@ -198,7 +170,7 @@
 .top-nav a {
   padding: 8px 10px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.46);
+  background: rgba(255, 249, 234, 0.58);
   color: var(--color-ink);
   font-size: 13px;
   font-weight: 700;
@@ -244,7 +216,7 @@
 .countdown-band {
   min-height: auto;
   padding: clamp(76px, 9vw, 120px) var(--container-pad);
-  background: rgba(255, 250, 244, 0.62);
+  background: rgba(255, 249, 234, 0.42);
   color: var(--color-ink);
   text-align: center;
 }
@@ -308,7 +280,7 @@
   padding: 30px;
   border: 1px solid var(--color-line);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.46);
+  background: rgba(255, 249, 234, 0.5);
 }
 
 .timeline li::before {
@@ -320,7 +292,7 @@
   border: 1px solid rgba(200, 164, 126, 0.44);
   border-radius: 50%;
   color: var(--color-caramel);
-  content: "◆";
+  content: "+";
   font-size: 14px;
 }
 
@@ -398,7 +370,7 @@
   padding: 28px;
   border: 1px solid var(--color-line);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 249, 234, 0.52);
 }
 
 .place-card p {
@@ -468,7 +440,7 @@
   max-width: none;
   padding-right: var(--container-pad);
   padding-left: var(--container-pad);
-  background: rgba(247, 240, 231, 0.72);
+  background: rgba(255, 249, 234, 0.34);
 }
 
 .dress-layout {
@@ -487,7 +459,7 @@
   padding: 28px;
   border: 1px solid var(--color-line);
   border-radius: 8px;
-  background: rgba(255, 250, 244, 0.68);
+  background: rgba(255, 249, 234, 0.58);
 }
 
 .swatches {
@@ -558,7 +530,7 @@
   padding: 10px 12px;
   border: 1px solid var(--color-line);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.46);
+  background: rgba(255, 249, 234, 0.56);
 }
 
 .choice input {
@@ -620,8 +592,8 @@
   place-items: center;
   gap: 8px;
   padding: clamp(72px, 10vw, 132px) var(--container-pad);
-  background: var(--color-ink);
-  color: var(--color-cream);
+  background: rgba(255, 249, 234, 0.38);
+  color: var(--color-ink);
   text-align: center;
 }
 
@@ -680,7 +652,7 @@
 
 .footer p,
 .footer span {
-  color: rgba(255, 248, 239, 0.78);
+  color: var(--color-muted);
 }
 
 .footer strong {

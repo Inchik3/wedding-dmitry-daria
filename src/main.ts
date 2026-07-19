@@ -1,4 +1,5 @@
 import './styles/base.css';
+import './styles/silk-background.css';
 import './styles/components.css';
 import './styles/responsive.css';
 import { wedding } from './config/content';
@@ -17,6 +18,8 @@ if (!app) {
 }
 
 app.innerHTML = `
+  <div class="silk-background" aria-hidden="true"></div>
+
   <div class="envelope-screen" data-envelope>
     <div class="envelope-card" aria-label="Свадебное приглашение Дмитрия и Дарьи">
       <div class="envelope-flap"></div>

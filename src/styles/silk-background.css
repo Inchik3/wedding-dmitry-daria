@@ -1,0 +1,114 @@
+:root {
+  --silk-base: #f3e8d2;
+  --silk-light: #fff9ea;
+  --silk-warm: #e8d8bc;
+  --silk-shadow: #dcccad;
+  --silk-highlight: rgba(255, 255, 245, 0.75);
+  --silk-animation-duration: 26s;
+}
+
+.silk-background {
+  position: fixed;
+  inset: -10vmax;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 18% 18%, rgba(255, 255, 245, 0.46) 0 9%, transparent 27%),
+    radial-gradient(ellipse at 72% 22%, rgba(255, 249, 234, 0.48) 0 8%, transparent 30%),
+    radial-gradient(ellipse at 38% 76%, rgba(220, 204, 173, 0.22) 0 12%, transparent 36%),
+    conic-gradient(from 215deg at 54% 50%, transparent 0 10%, rgba(255, 255, 245, 0.34) 17%, rgba(220, 204, 173, 0.16) 24%, transparent 36% 100%),
+    linear-gradient(115deg, rgba(255, 249, 234, 0.56) 0 18%, transparent 35% 54%, rgba(232, 216, 188, 0.18) 68%, transparent 82%),
+    linear-gradient(150deg, var(--silk-light), var(--silk-base) 46%, var(--silk-warm));
+  background-size: 150% 145%, 140% 150%, 170% 160%, 165% 165%, 210% 210%, 100% 100%;
+  background-position: 0% 0%, 100% 12%, 40% 100%, 50% 46%, 20% 30%, center;
+  filter: saturate(1.02);
+  transform: translate3d(0, 0, 0) scale(1.02);
+  animation: silk-background-drift var(--silk-animation-duration) ease-in-out infinite;
+}
+
+.silk-background::before,
+.silk-background::after {
+  position: absolute;
+  inset: -8vmax;
+  display: block;
+  content: "";
+  pointer-events: none;
+  will-change: transform, background-position, opacity;
+}
+
+.silk-background::before {
+  background:
+    linear-gradient(102deg, transparent 0 15%, rgba(255, 255, 245, 0.34) 22%, transparent 32% 45%, rgba(220, 204, 173, 0.16) 52%, transparent 65%),
+    linear-gradient(78deg, transparent 0 24%, rgba(255, 249, 234, 0.42) 31%, transparent 43% 58%, rgba(255, 255, 245, 0.32) 67%, transparent 78%),
+    radial-gradient(ellipse at 50% 48%, rgba(255, 255, 245, 0.26) 0 14%, transparent 42%);
+  background-size: 170% 120%, 185% 130%, 120% 120%;
+  background-position: 18% 42%, 82% 34%, 50% 50%;
+  filter: blur(9px);
+  opacity: 0.96;
+  transform: rotate(-7deg) skewX(-4deg) scale(1.08);
+  animation: silk-folds-drift calc(var(--silk-animation-duration) * 1.18) ease-in-out infinite;
+}
+
+.silk-background::after {
+  background:
+    linear-gradient(32deg, transparent 0 28%, var(--silk-highlight) 33%, transparent 39% 62%, rgba(220, 204, 173, 0.15) 70%, transparent 78%),
+    linear-gradient(146deg, transparent 0 18%, rgba(255, 255, 245, 0.24) 25%, transparent 36% 48%, rgba(255, 249, 234, 0.36) 56%, transparent 68%),
+    radial-gradient(ellipse at 80% 68%, rgba(255, 255, 245, 0.38) 0 8%, transparent 30%);
+  background-size: 210% 210%, 190% 160%, 130% 130%;
+  background-position: 50% 50%, 20% 80%, 70% 40%;
+  filter: blur(14px);
+  opacity: 0.66;
+  transform: rotate(10deg) skewY(3deg) scale(1.12);
+  animation: silk-highlight-drift calc(var(--silk-animation-duration) * 1.42) ease-in-out infinite;
+}
+
+@keyframes silk-background-drift {
+  0%,
+  100% {
+    background-position: 0% 0%, 100% 12%, 40% 100%, 50% 46%, 20% 30%, center;
+    transform: translate3d(0, 0, 0) scale(1.02);
+  }
+
+  50% {
+    background-position: 8% 4%, 92% 18%, 48% 92%, 54% 50%, 32% 42%, center;
+    transform: translate3d(-1.1%, 0.8%, 0) scale(1.035);
+  }
+}
+
+@keyframes silk-folds-drift {
+  0%,
+  100% {
+    background-position: 18% 42%, 82% 34%, 50% 50%;
+    transform: rotate(-7deg) skewX(-4deg) translate3d(0, 0, 0) scale(1.08);
+  }
+
+  50% {
+    background-position: 26% 48%, 74% 28%, 52% 46%;
+    transform: rotate(-5deg) skewX(-2deg) translate3d(1.6%, -1.2%, 0) scale(1.1);
+  }
+}
+
+@keyframes silk-highlight-drift {
+  0%,
+  100% {
+    background-position: 50% 50%, 20% 80%, 70% 40%;
+    opacity: 0.66;
+    transform: rotate(10deg) skewY(3deg) translate3d(0, 0, 0) scale(1.12);
+  }
+
+  50% {
+    background-position: 46% 58%, 26% 72%, 64% 46%;
+    opacity: 0.74;
+    transform: rotate(8deg) skewY(1deg) translate3d(-1.2%, 1%, 0) scale(1.13);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .silk-background,
+  .silk-background::before,
+  .silk-background::after {
+    animation: none !important;
+    transform: none;
+  }
+}
