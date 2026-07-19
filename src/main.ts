@@ -20,7 +20,7 @@ if (!app) {
 app.innerHTML = `
   <div
     class="silk-background"
-    style="--silk-desktop-image: url('${import.meta.env.BASE_URL}images/silk-desktop.webp'); --silk-mobile-image: url('${import.meta.env.BASE_URL}images/silk-mobile.webp')"
+    style="--silk-desktop-image: url('${import.meta.env.BASE_URL}images/silk-desktop-v2.webp'); --silk-mobile-image: url('${import.meta.env.BASE_URL}images/silk-mobile-v2.webp')"
     aria-hidden="true"
   ></div>
 

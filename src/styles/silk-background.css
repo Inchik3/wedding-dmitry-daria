@@ -3,23 +3,24 @@
   --silk-light: #fff9ea;
   --silk-shadow: #dcccad;
   --silk-highlight: rgba(255, 255, 245, 0.42);
-  --silk-animation-duration: 34s;
+  --silk-animation-duration: 24s;
+  --silk-mobile-animation-duration: 32s;
 }
 
 .silk-background {
   position: fixed;
-  inset: -3vmax;
+  inset: -7vmax;
   z-index: 0;
   pointer-events: none;
   background-color: var(--silk-base);
   background-image:
-    linear-gradient(145deg, rgba(255, 249, 234, 0.34), rgba(220, 204, 173, 0.1)),
+    linear-gradient(145deg, rgba(255, 249, 234, 0.5), rgba(243, 232, 210, 0.22)),
     var(--silk-desktop-image);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  opacity: 0.88;
-  transform: translate3d(0, 0, 0) scale(1.03);
+  opacity: 0.9;
+  transform: translate3d(0, 0, 0) scale(1.08);
 }
 
 @media (min-width: 761px) {
@@ -31,22 +32,34 @@
 
 @media (max-width: 760px) {
   .silk-background {
-    inset: 0;
+    inset: -5vmax;
     background-image:
-      linear-gradient(145deg, rgba(255, 249, 234, 0.32), rgba(220, 204, 173, 0.1)),
+      linear-gradient(145deg, rgba(255, 249, 234, 0.44), rgba(243, 232, 210, 0.18)),
       var(--silk-mobile-image);
-    opacity: 0.86;
-    transform: translate3d(0, 0, 0);
+    opacity: 0.88;
+    transform: translate3d(0, 0, 0) scale(1.045);
+    animation: silk-texture-drift-mobile var(--silk-mobile-animation-duration) ease-in-out infinite alternate;
+    will-change: transform;
   }
 }
 
 @keyframes silk-texture-drift {
   from {
-    transform: translate3d(-0.9%, -0.6%, 0) scale(1.035);
+    transform: translate3d(-2.6%, -1.8%, 0) scale(1.08);
   }
 
   to {
-    transform: translate3d(0.9%, 0.7%, 0) scale(1.055);
+    transform: translate3d(2.4%, 1.7%, 0) scale(1.12);
+  }
+}
+
+@keyframes silk-texture-drift-mobile {
+  from {
+    transform: translate3d(-1.4%, -1%, 0) scale(1.045);
+  }
+
+  to {
+    transform: translate3d(1.3%, 1%, 0) scale(1.075);
   }
 }
 
