@@ -1,0 +1,94 @@
+@media (max-width: 760px) {
+  .section {
+    padding: 72px 0;
+  }
+
+  .top-nav {
+    top: 68px;
+    right: 16px;
+    left: auto;
+    max-width: min(240px, calc(100% - 32px));
+    display: none;
+    transform: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+    border: 1px solid rgba(255, 248, 239, 0.22);
+    border-radius: 8px;
+    background: rgba(59, 48, 41, 0.74);
+    backdrop-filter: blur(10px);
+  }
+
+  .top-nav[data-open="true"] {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: grid;
+  }
+
+  .top-nav a {
+    padding: 7px 8px;
+    font-size: 12px;
+  }
+
+  .hero {
+    padding-top: 104px;
+  }
+
+  .hero-date {
+    margin-top: 22px;
+  }
+
+  .countdown-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .timeline li {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 20px 0;
+  }
+
+  .timeline time {
+    font-size: 34px;
+  }
+
+  .photo-pause {
+    aspect-ratio: 4 / 5;
+  }
+
+  .place-grid,
+  .dress-layout,
+  .drink-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .place-card,
+  .palette-box {
+    padding: 22px;
+  }
+
+  .map-shell {
+    aspect-ratio: 4 / 3;
+  }
+
+  .music-toggle {
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-line {
+    font-size: 15px;
+  }
+
+  .countdown-grid div {
+    padding: 14px 8px;
+  }
+
+  .swatches {
+    grid-template-columns: repeat(4, minmax(28px, 1fr));
+  }
+}
