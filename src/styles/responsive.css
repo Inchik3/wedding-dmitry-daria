@@ -82,7 +82,7 @@
 
 @media (max-width: 520px) {
   h1 {
-    font-size: clamp(68px, 20vw, 92px);
+    font-size: clamp(56px, 17vw, 78px);
   }
 
   .hero-line {

@@ -198,7 +198,7 @@
   margin-top: 28px;
   color: var(--color-ink);
   font-family: var(--font-calligraphy);
-  font-size: clamp(38px, 4vw, 58px);
+  font-size: clamp(32px, 3.2vw, 48px);
   font-weight: 400;
   line-height: 0.9;
 }
@@ -252,7 +252,7 @@
 .countdown-grid strong {
   display: block;
   font-family: var(--font-calligraphy);
-  font-size: clamp(56px, 7vw, 96px);
+  font-size: clamp(48px, 6vw, 82px);
   font-weight: 400;
   font-variant-numeric: tabular-nums;
   line-height: 1;
@@ -266,7 +266,7 @@
 .countdown-finished {
   color: var(--color-ink);
   font-family: var(--font-calligraphy);
-  font-size: clamp(42px, 6vw, 72px);
+  font-size: clamp(38px, 5vw, 64px);
 }
 
 .section-heading {
@@ -671,6 +671,6 @@
 
 .footer strong {
   margin-top: 18px;
-  font-size: clamp(72px, 10vw, 132px);
-  line-height: 0.8;
+  font-size: clamp(58px, 8vw, 104px);
+  line-height: 0.9;
 }
