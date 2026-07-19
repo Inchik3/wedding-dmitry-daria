@@ -10,6 +10,7 @@
   --shadow-soft: 0 18px 60px rgba(59, 48, 41, 0.12);
   --container-max: 1120px;
   --container-pad: clamp(20px, 4vw, 48px);
+  --font-calligraphy: Gabriola, "Segoe Script", "Monotype Corsiva", "Marck Script", "Cormorant Garamond", Georgia, serif;
   color: var(--color-ink);
   background: var(--color-paper);
   font-family: Manrope, Arial, sans-serif;
@@ -100,23 +101,23 @@ h3,
 .ornament,
 .footer strong {
   margin: 0;
-  font-family: "Marck Script", "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-calligraphy);
   font-weight: 400;
   letter-spacing: 0;
 }
 
 h1 {
-  font-size: clamp(64px, 11vw, 140px);
-  line-height: 0.92;
+  font-size: clamp(78px, 14vw, 170px);
+  line-height: 0.78;
 }
 
 h2 {
-  font-size: clamp(42px, 6vw, 72px);
-  line-height: 1.04;
+  font-size: clamp(54px, 7vw, 92px);
+  line-height: 0.9;
 }
 
 h3 {
-  font-size: clamp(32px, 3.2vw, 46px);
+  font-size: clamp(42px, 4vw, 62px);
 }
 
 p {

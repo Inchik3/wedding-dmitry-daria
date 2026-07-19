@@ -58,6 +58,9 @@
   z-index: 1;
   margin-bottom: 8px;
   color: var(--color-muted);
+  font-family: var(--font-calligraphy);
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 0.9;
 }
 
 .monogram {
@@ -65,7 +68,9 @@
   z-index: 1;
   margin-bottom: 28px;
   color: var(--color-ink);
-  font-size: clamp(64px, 12vw, 100px);
+  font-family: var(--font-calligraphy);
+  font-size: clamp(82px, 14vw, 124px);
+  line-height: 0.82;
 }
 
 .envelope-button {
@@ -187,8 +192,10 @@
 .hero-date {
   margin-top: 28px;
   color: var(--color-ink);
-  font-size: clamp(20px, 2vw, 28px);
-  font-weight: 600;
+  font-family: var(--font-calligraphy);
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 400;
+  line-height: 0.9;
 }
 
 .hero-line {
@@ -210,7 +217,8 @@
 .ornament {
   margin-bottom: 18px;
   color: var(--color-caramel);
-  font-size: 42px;
+  font-size: 56px;
+  line-height: 0.9;
 }
 
 .countdown-band {
@@ -238,8 +246,9 @@
 
 .countdown-grid strong {
   display: block;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(44px, 6vw, 76px);
+  font-family: var(--font-calligraphy);
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 400;
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
@@ -251,7 +260,7 @@
 
 .countdown-finished {
   color: var(--color-ink);
-  font-family: "Marck Script", "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-calligraphy);
   font-size: clamp(42px, 6vw, 72px);
 }
 
@@ -298,9 +307,9 @@
 
 .timeline time {
   color: var(--color-caramel);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 42px;
-  font-weight: 700;
+  font-family: var(--font-calligraphy);
+  font-size: 58px;
+  font-weight: 400;
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
@@ -644,9 +653,9 @@
   bottom: 10px;
   left: 12px;
   color: var(--color-cream);
-  font-family: "Marck Script", "Cormorant Garamond", Georgia, serif;
-  font-size: 34px;
-  line-height: 1;
+  font-family: var(--font-calligraphy);
+  font-size: 48px;
+  line-height: 0.86;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.32);
 }
 
@@ -657,5 +666,6 @@
 
 .footer strong {
   margin-top: 18px;
-  font-size: clamp(50px, 8vw, 92px);
+  font-size: clamp(72px, 10vw, 132px);
+  line-height: 0.8;
 }
