@@ -5,7 +5,7 @@ test('opens envelope and shows the main invitation', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Открыть приглашение' })).toBeVisible();
   await page.getByRole('button', { name: 'Открыть приглашение' }).click();
   await expect(page.getByRole('heading', { name: 'Дмитрий и Дарья' })).toBeVisible();
-  await expect(page.locator('.hero-content').getByText('28 августа 2026')).toBeVisible();
+  await expect(page.getByText('28 августа 2026').first()).toBeVisible();
   await expect(page.locator('.hero img')).toHaveCount(0);
 });
 

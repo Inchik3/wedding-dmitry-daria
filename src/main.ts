@@ -9,7 +9,6 @@ import { initMusic } from './modules/music';
 import { initNavigation } from './modules/navigation';
 import { initRsvp } from './modules/rsvp';
 import { initScrollReveal } from './modules/scrollReveal';
-import { initSilkBackground } from './modules/silkBackground';
 
 const app = document.querySelector<HTMLDivElement>('#app');
 
@@ -18,8 +17,6 @@ if (!app) {
 }
 
 app.innerHTML = `
-  <canvas class="silk-canvas" data-silk-canvas aria-hidden="true"></canvas>
-
   <div class="envelope-screen" data-envelope>
     <div class="envelope-card" aria-label="Свадебное приглашение Дмитрия и Дарьи">
       <div class="envelope-flap"></div>
@@ -247,4 +244,3 @@ initLazyMaps();
 initNavigation();
 initRsvp();
 initScrollReveal();
-initSilkBackground();
