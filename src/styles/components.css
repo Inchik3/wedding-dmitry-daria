@@ -1,3 +1,12 @@
+.silk-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
 .envelope-screen {
   position: fixed;
   inset: 0;
@@ -5,7 +14,8 @@
   display: grid;
   place-items: center;
   padding: 24px;
-  background: linear-gradient(135deg, #fffaf4, #f4eadc);
+  background: rgba(255, 250, 244, 0.32);
+  backdrop-filter: blur(1px);
 }
 
 .envelope-card {
@@ -90,6 +100,11 @@
   cursor: pointer;
 }
 
+#main-content {
+  position: relative;
+  z-index: 1;
+}
+
 .music-toggle:hover {
   border-color: var(--color-caramel);
   color: #241d18;
@@ -119,43 +134,9 @@
   place-items: center;
   overflow: hidden;
   padding: 96px var(--container-pad) 72px;
-  background:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.62), rgba(255, 248, 239, 0.52)),
-    radial-gradient(ellipse at 15% 18%, rgba(239, 201, 201, 0.28), transparent 32%),
-    radial-gradient(ellipse at 85% 72%, rgba(242, 221, 198, 0.42), transparent 36%),
-    var(--color-silk);
+  background: rgba(255, 250, 244, 0.12);
   color: var(--color-ink);
   text-align: center;
-}
-
-.hero::before,
-.hero::after {
-  position: absolute;
-  inset: -18% -10%;
-  pointer-events: none;
-  content: "";
-}
-
-.hero::before {
-  background:
-    linear-gradient(100deg, transparent 0 22%, rgba(255, 255, 255, 0.42) 34%, transparent 47%),
-    linear-gradient(78deg, transparent 0 46%, rgba(200, 164, 126, 0.12) 58%, transparent 70%);
-  filter: blur(18px);
-  transform: rotate(-4deg);
-  animation: silk-shift 16s ease-in-out infinite alternate;
-}
-
-.hero::after {
-  background: radial-gradient(ellipse at 50% 50%, transparent 0 42%, rgba(255, 250, 244, 0.62) 72%);
-}
-
-@keyframes silk-shift {
-  from {
-    transform: translate3d(-1%, -1%, 0) rotate(-4deg);
-  }
-  to {
-    transform: translate3d(1%, 1%, 0) rotate(-1deg);
-  }
 }
 
 .top-nav {
@@ -244,7 +225,7 @@
 .countdown-band {
   min-height: auto;
   padding: clamp(76px, 9vw, 120px) var(--container-pad);
-  background: rgba(255, 250, 244, 0.62);
+  background: linear-gradient(rgba(255, 250, 244, 0.44), rgba(255, 250, 244, 0.26));
   color: var(--color-ink);
   text-align: center;
 }
@@ -468,7 +449,7 @@
   max-width: none;
   padding-right: var(--container-pad);
   padding-left: var(--container-pad);
-  background: rgba(247, 240, 231, 0.72);
+  background: rgba(247, 240, 231, 0.48);
 }
 
 .dress-layout {

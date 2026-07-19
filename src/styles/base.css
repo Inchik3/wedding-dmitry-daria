@@ -28,10 +28,7 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  background:
-    radial-gradient(circle at 18% 8%, rgba(239, 201, 201, 0.28), transparent 28%),
-    radial-gradient(circle at 84% 18%, rgba(242, 221, 198, 0.38), transparent 30%),
-    linear-gradient(135deg, #fffaf4 0%, #f7eee6 48%, #fffaf4 100%);
+  background: #ebe0d1;
 }
 
 body,
@@ -75,6 +72,11 @@ img {
 
 #main-content:focus {
   outline: none;
+}
+
+#app {
+  position: relative;
+  min-height: 100vh;
 }
 
 .section {
