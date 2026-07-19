@@ -18,7 +18,11 @@ if (!app) {
 }
 
 app.innerHTML = `
-  <div class="silk-background" aria-hidden="true"></div>
+  <div
+    class="silk-background"
+    style="--silk-desktop-image: url('${import.meta.env.BASE_URL}images/silk-desktop.webp'); --silk-mobile-image: url('${import.meta.env.BASE_URL}images/silk-mobile.webp')"
+    aria-hidden="true"
+  ></div>
 
   <div class="envelope-screen" data-envelope>
     <div class="envelope-card" aria-label="Свадебное приглашение Дмитрия и Дарьи">
