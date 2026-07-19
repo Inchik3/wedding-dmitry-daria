@@ -279,3 +279,100 @@ Playwright:
 - Точные HEX дресс-кода требуют реального файла палитры.
 - Фотографии и музыка будут добавлены заказчиком.
 - Успешность Apps Script публикации проверяется только после создания и деплоя скрипта.
+
+## Обновление архитектуры: RSVP arrival time и визуальная версия
+
+Это обновление приоритетно над предыдущими противоречащими пунктами.
+
+### Frontend changes после утверждения
+
+- Hero должен поддерживать режим без фотографии:
+  - не рендерить hero image как основной фон;
+  - использовать CSS silk background;
+  - оставить fallback-фото только как опциональный вариант.
+- Добавить final portraits component:
+  - `public/images/groom.webp`;
+  - `public/images/bride.webp`;
+  - fallback placeholders при отсутствии файлов.
+- Program module/config обновить до двух событий:
+  - `13:00`, `Регистрация`;
+  - `16:00`, `Банкет`.
+- Dress-code config сократить до 6 цветов.
+- RSVP state machine дополнить полем `arrivalTime`.
+
+### RSVP data model
+
+Клиентская форма после обновления:
+
+```ts
+type Attendance = 'attending' | 'declined';
+type ArrivalTime = 'registration_1245' | 'banquet_1545';
+
+type RsvpFormData = {
+  guestName: string;
+  attendance: Attendance | '';
+  arrivalTime: ArrivalTime | '';
+  drinks: string[];
+  comment: string;
+  honeypot: string;
+};
+```
+
+Правила:
+
+- `arrivalTime` показывается только при `attendance === 'attending'`.
+- Для присутствующего `arrivalTime` обязателен.
+- При отказе `arrivalTime` очищается и не отправляется.
+- Номер телефона не добавляется.
+
+### API-контракт
+
+POST JSON:
+
+```json
+{
+  "guestName": "string",
+  "attendance": "attending | declined",
+  "arrivalTime": "registration_1245 | banquet_1545 | null",
+  "drinks": ["string"],
+  "comment": "string",
+  "submittedAt": "ISO string",
+  "isLate": false,
+  "honeypot": ""
+}
+```
+
+### Google Sheets
+
+Apps Script должен писать столбцы в порядке:
+
+1. Дата отправки.
+2. Имя гостя.
+3. Статус участия.
+4. Время прибытия.
+5. Напитки.
+6. Комментарий.
+7. Просроченный ответ.
+
+Значения должны быть человекочитаемыми:
+
+- `attending` -> «Будет присутствовать».
+- `declined` -> «Не сможет присутствовать».
+- `registration_1245` -> «Приду на регистрацию к 12:45».
+- `banquet_1545` -> «Подойду к банкету к 15:45».
+- `isLate` -> «Да»/«Нет».
+
+### Apps Script validation
+
+- Проверять имя, статус, комментарий и напитки как раньше.
+- Для `attendance === 'attending'` проверять, что `arrivalTime` один из допустимых вариантов.
+- Для `attendance === 'declined'` игнорировать `arrivalTime` и drinks.
+- Honeypot оставить.
+- User-Agent не сохранять.
+
+### Privacy
+
+- Cookie не использовать.
+- Cookie-баннер не добавлять.
+- Аналитику и трекеры не добавлять.
+- Под кнопкой формы выводить согласие на обработку данных исключительно для организации свадьбы.

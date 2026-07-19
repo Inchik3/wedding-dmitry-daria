@@ -1,16 +1,12 @@
 :root {
   --color-cream: #fff8ef;
   --color-paper: #fffaf4;
+  --color-silk: #f8efe5;
   --color-ink: #3b3029;
   --color-muted: #75685f;
   --color-line: #e8dccc;
-  --color-beige: #dfcfbb;
   --color-caramel: #c8a47e;
   --color-blush: #efc9c9;
-  --color-lavender: #d8cbe8;
-  --color-butter: #f2df9e;
-  --color-sage: #c7d6bd;
-  --color-sky: #c4d9e8;
   --shadow-soft: 0 18px 60px rgba(59, 48, 41, 0.12);
   --container-max: 1120px;
   --container-pad: clamp(20px, 4vw, 48px);
@@ -33,9 +29,9 @@ body {
   min-width: 320px;
   margin: 0;
   background:
-    linear-gradient(rgba(255, 250, 244, 0.92), rgba(255, 250, 244, 0.92)),
-    radial-gradient(circle at 20% 10%, rgba(239, 201, 201, 0.28), transparent 30%),
-    var(--color-paper);
+    radial-gradient(circle at 18% 8%, rgba(239, 201, 201, 0.28), transparent 28%),
+    radial-gradient(circle at 84% 18%, rgba(242, 221, 198, 0.38), transparent 30%),
+    linear-gradient(135deg, #fffaf4 0%, #f7eee6 48%, #fffaf4 100%);
 }
 
 body,
@@ -96,25 +92,27 @@ img {
 h1,
 h2,
 h3,
-.monogram {
+.monogram,
+.ornament,
+.footer strong {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 600;
+  font-family: "Marck Script", "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
   letter-spacing: 0;
 }
 
 h1 {
-  font-size: clamp(44px, 8vw, 112px);
-  line-height: 0.98;
+  font-size: clamp(64px, 11vw, 140px);
+  line-height: 0.92;
 }
 
 h2 {
-  font-size: clamp(34px, 5vw, 58px);
-  line-height: 1;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.04;
 }
 
 h3 {
-  font-size: clamp(28px, 3vw, 38px);
+  font-size: clamp(32px, 3.2vw, 46px);
 }
 
 p {
@@ -164,7 +162,7 @@ p + p {
 
 .button-secondary {
   border-color: var(--color-line);
-  background: rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.62);
   color: var(--color-ink);
 }
 

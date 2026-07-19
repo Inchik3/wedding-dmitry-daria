@@ -1,11 +1,13 @@
 const SPREADSHEET_ID = '139kFSSnOlDV725enWmBKCJz2zTI83uPR7b3SQDvTIRU';
 const SHEET_NAME = 'RSVP';
 const HEADERS = [
-  '\u0414\u0430\u0442\u0430 \u0438 \u0432\u0440\u0435\u043c\u044f \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438',
-  '\u0418\u043c\u044f \u0433\u043e\u0441\u0442\u044f',
-  '\u0421\u0442\u0430\u0442\u0443\u0441 \u0443\u0447\u0430\u0441\u0442\u0438\u044f',
-  '\u041d\u0430\u043f\u0438\u0442\u043a\u0438',
-  '\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439',
+  'Дата отправки',
+  'Имя гостя',
+  'Статус участия',
+  'Время прибытия',
+  'Напитки',
+  'Комментарий',
+  'Просроченный ответ',
 ];
 
 function doPost(e) {
@@ -18,7 +20,7 @@ function doPost(e) {
     }
 
     if (String(payload.honeypot || '').trim()) {
-      return json_({ ok: true, message: '\u0421\u043f\u0430\u0441\u0438\u0431\u043e! \u0412\u0430\u0448 \u043e\u0442\u0432\u0435\u0442 \u0441\u043e\u0445\u0440\u0430\u043d\u0451\u043d.' });
+      return json_({ ok: true, message: 'Спасибо! Ваш ответ сохранен.' });
     }
 
     const lock = LockService.getScriptLock();
@@ -30,36 +32,42 @@ function doPost(e) {
         formatDate_(payload.submittedAt),
         payload.guestName,
         formatAttendance_(payload.attendance),
+        formatArrivalTime_(payload.arrivalTime),
         (payload.drinks || []).join(', '),
         payload.comment || '',
+        payload.isLate ? 'Да' : 'Нет',
       ]);
     } finally {
       lock.releaseLock();
     }
 
-    return json_({ ok: true, message: '\u0421\u043f\u0430\u0441\u0438\u0431\u043e! \u0412\u0430\u0448 \u043e\u0442\u0432\u0435\u0442 \u0441\u043e\u0445\u0440\u0430\u043d\u0451\u043d.' });
+    return json_({ ok: true, message: 'Спасибо! Ваш ответ сохранен.' });
   } catch (error) {
-    return json_({ ok: false, message: '\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u0441\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u043e\u0442\u0432\u0435\u0442. \u041f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437.' });
+    return json_({ ok: false, message: 'Не удалось сохранить ответ. Попробуйте еще раз.' });
   }
 }
 
 function validatePayload_(payload) {
   const name = String(payload.guestName || '').trim();
   const attendance = String(payload.attendance || '');
+  const arrivalTime = payload.arrivalTime === null ? '' : String(payload.arrivalTime || '');
   const drinks = Array.isArray(payload.drinks) ? payload.drinks : [];
   const comment = String(payload.comment || '');
 
   if (!name || name.length > 80) {
-    return { ok: false, message: '\u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0438\u043c\u044f \u0433\u043e\u0441\u0442\u044f.' };
+    return { ok: false, message: 'Проверьте имя гостя.' };
   }
   if (attendance !== 'attending' && attendance !== 'declined') {
-    return { ok: false, message: '\u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0441\u0442\u0430\u0442\u0443\u0441 \u0443\u0447\u0430\u0441\u0442\u0438\u044f.' };
+    return { ok: false, message: 'Проверьте статус участия.' };
+  }
+  if (attendance === 'attending' && arrivalTime !== 'registration_1245' && arrivalTime !== 'banquet_1545') {
+    return { ok: false, message: 'Выберите время прибытия.' };
   }
   if (attendance === 'attending' && drinks.length === 0) {
-    return { ok: false, message: '\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043d\u0430\u043f\u0438\u0442\u043a\u0438.' };
+    return { ok: false, message: 'Выберите напитки.' };
   }
   if (comment.length > 500) {
-    return { ok: false, message: '\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439 \u0441\u043b\u0438\u0448\u043a\u043e\u043c \u0434\u043b\u0438\u043d\u043d\u044b\u0439.' };
+    return { ok: false, message: 'Комментарий слишком длинный.' };
   }
 
   return { ok: true };
@@ -86,9 +94,15 @@ function updateHeaders() {
 }
 
 function formatAttendance_(attendance) {
-  if (attendance === 'attending') return '\u0411\u0443\u0434\u0435\u0442 \u043f\u0440\u0438\u0441\u0443\u0442\u0441\u0442\u0432\u043e\u0432\u0430\u0442\u044c';
-  if (attendance === 'declined') return '\u041d\u0435 \u0441\u043c\u043e\u0436\u0435\u0442 \u043f\u0440\u0438\u0441\u0443\u0442\u0441\u0442\u0432\u043e\u0432\u0430\u0442\u044c';
+  if (attendance === 'attending') return 'Будет присутствовать';
+  if (attendance === 'declined') return 'Не сможет присутствовать';
   return String(attendance || '');
+}
+
+function formatArrivalTime_(arrivalTime) {
+  if (arrivalTime === 'registration_1245') return 'Приду на регистрацию к 12:45';
+  if (arrivalTime === 'banquet_1545') return 'Подойду к банкету к 15:45';
+  return '';
 }
 
 function formatDate_(value) {

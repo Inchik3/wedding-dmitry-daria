@@ -31,8 +31,8 @@ jobs:
       - run: pnpm test
       - run: pnpm build
         env:
-          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || '/' }}
-          VITE_GOOGLE_APPS_SCRIPT_URL: ${{ vars.VITE_GOOGLE_APPS_SCRIPT_URL || '' }}
+          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || '/wedding-dmitry-daria/' }}
+          VITE_GOOGLE_APPS_SCRIPT_URL: ${{ vars.VITE_GOOGLE_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbyp6E5HNQOpbJyW8RjSt7wbNf8xllqR1sVMXVj20zFlaNsutxMSVKskTVq3NSQrzTgP/exec' }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

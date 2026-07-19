@@ -1,20 +1,18 @@
 export const wedding = {
-  names: 'Дмитрий & Дарья',
+  names: 'Дмитрий и Дарья',
   dateText: '28 августа 2026',
   dateIsoMoscow: '2026-08-28T13:00:00+03:00',
   rsvpDeadlineIsoMoscow: '2026-08-01T23:59:59+03:00',
   heroLine: 'Приглашаем вас разделить с нами этот особенный день',
   audioPath: `${import.meta.env.BASE_URL}audio/wedding-theme.mp3`,
   photos: {
-    hero: `${import.meta.env.BASE_URL}images/hero.webp`,
     first: `${import.meta.env.BASE_URL}images/couple-01.webp`,
     second: `${import.meta.env.BASE_URL}images/couple-02.webp`,
-    palette: `${import.meta.env.BASE_URL}images/dress-code-palette.png`,
+    groom: `${import.meta.env.BASE_URL}images/groom.webp`,
+    bride: `${import.meta.env.BASE_URL}images/bride.webp`,
   },
   program: [
-    { time: '12:45', title: 'Сбор гостей на регистрацию' },
     { time: '13:00', title: 'Регистрация' },
-    { time: '15:45', title: 'Сбор гостей на банкет' },
     { time: '16:00', title: 'Банкет' },
   ],
   places: [
@@ -31,12 +29,16 @@ export const wedding = {
     {
       key: 'banquet',
       title: 'Банкет',
-      address: '«Rose park», г. Саранск, ул. Строительная, 15',
+      address: 'Rose park, г. Саранск, ул. Строительная, 15',
       mapTitle: 'Карта места банкета',
       routeUrl: 'https://yandex.ru/maps/org/rose_park/119299981084/?ll=45.153979%2C54.205732&z=17',
       embedUrl:
         'https://yandex.ru/map-widget/v1/?ll=45.153979%2C54.205732&z=17&mode=search&oid=119299981084',
     },
+  ],
+  arrivalOptions: [
+    { value: 'registration_1245', label: 'Приду на регистрацию к 12:45' },
+    { value: 'banquet_1545', label: 'Подойду к банкету к 15:45' },
   ],
   drinks: [
     'Шампанское',
@@ -53,12 +55,6 @@ export const wedding = {
     { name: 'Нежно-голубой', hex: '#DDEEFF' },
     { name: 'Светлый шалфейный', hex: '#DFEED4' },
     { name: 'Кремово-молочный', hex: '#FEFCDD' },
-    { name: 'Пастельно-желтый', hex: '#FFF994' },
-    { name: 'Светлый лаймово-фисташковый', hex: '#EAF28F' },
-    { name: 'Васильково-голубой пастельный', hex: '#A7C6FF' },
-    { name: 'Сиреневый пастельный', hex: '#D9C9FE' },
-    { name: 'Нежно-розовый', hex: '#FFC0CB' },
-    { name: 'Светлый карамельно-коричневый', hex: '#BC987E' },
   ],
 } as const;
 

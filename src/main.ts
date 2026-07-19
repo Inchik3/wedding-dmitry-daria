@@ -22,7 +22,7 @@ app.innerHTML = `
       <div class="envelope-flap"></div>
       <div class="envelope-lines" aria-hidden="true"></div>
       <p class="envelope-date">${wedding.dateText}</p>
-      <p class="monogram">Д & Д</p>
+      <p class="monogram">Д и Д</p>
       <button class="button button-primary envelope-button" type="button" data-open-invite>
         Открыть приглашение
       </button>
@@ -42,11 +42,6 @@ app.innerHTML = `
 
   <main id="main-content" tabindex="-1">
     <section class="hero" id="invite" aria-labelledby="hero-title">
-      <img class="hero-image" src="${wedding.photos.hero}" alt="Дмитрий и Дарья" data-photo />
-      <div class="photo-placeholder hero-placeholder">
-        <span>Здесь будет наша фотография</span>
-      </div>
-      <div class="hero-shade"></div>
       <button class="menu-toggle" type="button" data-menu-toggle aria-controls="main-nav" aria-expanded="false">
         <span></span><span></span><span></span>
         <span class="sr-only">Открыть меню</span>
@@ -68,7 +63,7 @@ app.innerHTML = `
 
     <section class="section greeting" id="greeting" data-reveal>
       <div class="narrow">
-        <p class="ornament" aria-hidden="true">Д & Д</p>
+        <p class="ornament" aria-hidden="true">Д и Д</p>
         <h2>Дорогие гости!</h2>
         <p>Мы будем рады разделить с вами этот особенный день. Ваша поддержка и любовь значат для нас очень много.</p>
         <p>Приглашаем вас присоединиться к нашему празднику любви, радости и счастья.</p>
@@ -100,7 +95,7 @@ app.innerHTML = `
       </ol>
     </section>
 
-    <section class="photo-pause" aria-label="Фотография пары" data-reveal>
+    <section class="photo-pause" aria-label="Фотография Дмитрия и Дарьи" data-reveal>
       <img src="${wedding.photos.first}" alt="Дмитрий и Дарья" loading="lazy" decoding="async" data-photo />
       <div class="photo-placeholder"><span>Здесь будет наша фотография</span></div>
     </section>
@@ -133,18 +128,16 @@ app.innerHTML = `
       <div class="dress-layout">
         <div>
           <p class="eyebrow">Дресс-код</p>
-          <h2 id="dress-title">Нежная пастельная гамма</h2>
-          <p>Нам будет особенно приятно видеть вас в нарядах нежной пастельной гаммы.</p>
-          <p>Девушек просим по возможности выбрать мягкие оттенки: бежевый, светло-коричневый, розовый, лавандовый, нежный желтый, нежный зеленый или нежный голубой. Будем признательны, если белый цвет в этот день останется для невесты.</p>
-          <p>Для мужчин подойдет классический образ.</p>
+          <h2 id="dress-title">Нежная цветовая гамма</h2>
+          <p>Для девушек: нам будет особенно приятно видеть вас в нарядах нежной цветовой гаммы. Будем признательны, если белый цвет в этот день останется для невесты.</p>
+          <p>Для мужчин: классический образ.</p>
         </div>
         <div class="palette-box">
-          <img src="${wedding.photos.palette}" alt="Палитра дресс-кода" loading="lazy" decoding="async" data-palette />
           <div class="swatches" aria-label="Ориентиры пастельной палитры">
             ${wedding.dressPalette
               .map(
                 (color) =>
-                  `<span class="swatch" style="background-color: ${color.hex}" title="${color.name} — ${color.hex}" aria-label="${color.name} — ${color.hex}"></span>`,
+                  `<span class="swatch" style="background-color: ${color.hex}" title="${color.name} - ${color.hex}" aria-label="${color.name} - ${color.hex}"></span>`,
               )
               .join('')}
           </div>
@@ -152,17 +145,12 @@ app.innerHTML = `
       </div>
     </section>
 
-    <section class="photo-pause photo-pause-alt" aria-label="Фотография пары" data-reveal>
-      <img src="${wedding.photos.second}" alt="Дмитрий и Дарья" loading="lazy" decoding="async" data-photo />
-      <div class="photo-placeholder"><span>Здесь будет наша фотография</span></div>
-    </section>
-
     <section class="section rsvp" id="rsvp" aria-labelledby="rsvp-title" data-reveal>
       <div class="narrow">
         <p class="eyebrow">RSVP</p>
-        <h2 id="rsvp-title">Подтвердите присутствие</h2>
+        <h2 id="rsvp-title">Анкета гостя</h2>
         <p>Пожалуйста, сообщите нам до 1 августа 2026 года включительно, сможете ли вы быть с нами в этот день.</p>
-        <p class="deadline-note" data-deadline-note hidden>Срок подтверждения уже прошёл, но вы всё ещё можете отправить ответ</p>
+        <p class="deadline-note" data-deadline-note hidden>Срок подтверждения уже прошел, но вы все еще можете отправить ответ.</p>
         <form class="rsvp-form" data-rsvp-form novalidate>
           <label>
             <span>Имя гостя</span>
@@ -177,7 +165,17 @@ app.innerHTML = `
             <small class="field-error" data-error-for="attendance"></small>
           </fieldset>
 
-          <fieldset data-drinks-group>
+          <fieldset data-arrival-group hidden>
+            <legend>Ко скольки мы будем вас ждать?</legend>
+            <div class="arrival-grid">
+              ${wedding.arrivalOptions
+                .map((option) => `<label class="choice"><input type="radio" name="arrivalTime" value="${option.value}" /> ${option.label}</label>`)
+                .join('')}
+            </div>
+            <small class="field-error" data-error-for="arrivalTime"></small>
+          </fieldset>
+
+          <fieldset data-drinks-group hidden>
             <legend>Напитки</legend>
             <p class="hint">Можно выбрать несколько вариантов</p>
             <div class="drink-grid">
@@ -200,33 +198,44 @@ app.innerHTML = `
           </label>
 
           <button class="button button-primary" type="submit" data-rsvp-submit>Отправить ответ</button>
+          <p class="privacy-note">Отправляя форму, вы соглашаетесь на обработку указанных данных исключительно для организации свадьбы</p>
           <p class="form-status" data-rsvp-status role="status"></p>
         </form>
       </div>
     </section>
 
-    <footer class="footer">
-      <p>Будем счастливы видеть вас рядом.</p>
+    <footer class="footer final-section">
+      <div class="final-portraits" aria-label="Дмитрий и Дарья">
+        <article class="portrait-card">
+          <img src="${wedding.photos.groom}" alt="Дмитрий" loading="lazy" decoding="async" data-person-photo />
+          <div class="photo-placeholder"><span>Дмитрий</span></div>
+          <p>Дмитрий</p>
+        </article>
+        <article class="portrait-card">
+          <img src="${wedding.photos.bride}" alt="Дарья" loading="lazy" decoding="async" data-person-photo />
+          <div class="photo-placeholder"><span>Дарья</span></div>
+          <p>Дарья</p>
+        </article>
+      </div>
+      <p>Наше счастье станет полным только в окружении самых близких людей.</p>
+      <p>До встречи на свадьбе!</p>
       <strong>${wedding.names}</strong>
       <span>28.08.2026</span>
     </footer>
   </main>
 `;
 
-document.querySelectorAll<HTMLImageElement>('[data-photo]').forEach((image) => {
+document.querySelectorAll<HTMLImageElement>('[data-photo], [data-person-photo]').forEach((image) => {
   image.addEventListener('error', () => image.classList.add('is-missing'), { once: true });
   image.addEventListener(
     'load',
     () => {
       image.classList.add('is-loaded');
-      image.closest('.hero, .photo-pause')?.classList.add('has-photo');
+      image.closest('.photo-pause, .portrait-card')?.classList.add('has-photo');
     },
     { once: true },
   );
 });
-
-const palette = document.querySelector<HTMLImageElement>('[data-palette]');
-palette?.addEventListener('error', () => palette.classList.add('is-missing'), { once: true });
 
 const startMusic = initMusic(wedding.audioPath);
 initEnvelope(startMusic);
