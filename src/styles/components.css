@@ -652,16 +652,22 @@
   display: none;
 }
 
-.portrait-card p {
+.footer .portrait-card p {
   position: absolute;
   right: 12px;
   bottom: 10px;
   left: 12px;
-  color: var(--color-cream);
+  color: #3b3029;
   font-family: var(--font-calligraphy);
   font-size: 48px;
   line-height: 0.86;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.32);
+  text-shadow:
+    0 1px 0 rgba(255, 249, 234, 0.95),
+    0 -1px 0 rgba(255, 249, 234, 0.95),
+    1px 0 0 rgba(255, 249, 234, 0.95),
+    -1px 0 0 rgba(255, 249, 234, 0.95),
+    0 8px 22px rgba(255, 249, 234, 0.72),
+    0 2px 8px rgba(59, 48, 41, 0.18);
 }
 
 .footer p,
